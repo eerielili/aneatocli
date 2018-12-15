@@ -1,0 +1,18 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+<qresource>
+    <file alias="neato">icons/neato.png</file>
+    <file alias="impex">icons/import_export-24px.svg</file>
+    <file alias="refresh">icons/refresh-24px.svg</file>
+    <file alias="info">icons/info-24px.svg</file>
+    <file alias="bugrep">icons/bug_report-24px.svg</file>
+    <file alias="secrets">icons/fingerprint-24px.svg</file>
+    <file alias="robot">icons/robot.svg</file>
+    <file alias="cloudquest">icons/cloud-question.svg</file>
+    <file alias="start">icons/start.svg</file>
+    <file alias="stop">icons/stop.svg</file>
+    <file alias="pause">icons/pause.svg</file>
+    <file alias="resume">icons/resume.svg</file>
+    <file alias="base">icons/base.svg</file>
+</qresource>
+</RCC>
