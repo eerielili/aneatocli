@@ -1,0 +1,3 @@
+currentRobot=""
+robFilename=""
+robinfoFilename=""
