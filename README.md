@@ -2,3 +2,8 @@
 Hi everyone !
 
 Neato Control is a GUI based interface for [pybotvac](https://github.com/stianaske/pybotvac)
+
+
+```python
+pip install neatocontrols
+```
