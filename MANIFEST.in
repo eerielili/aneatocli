@@ -1,6 +1,0 @@
-include README.rst
-include LICENSE
-include requirements.txt
-include botvac/ressources/*.svg
-include botvac/ressources/*.png
-include botvac/rsc.qrc

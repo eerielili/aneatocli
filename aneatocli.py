@@ -93,10 +93,11 @@ def logCreds(mailarg=""):
     try:
         for robot in acc.robots:
             json_data="{\"serialID\": \""+robot.serial+"\" ,\"secretID\": \""+robot.secret+"\" ,\"traits\": \""+robot.traits[0]+"\" ,\"name\": \""+robot.name+"\"}"
-            json_filename=robot.name+".json"
-            with open(json_filename,"w") as json_file:
-                json_file.write(json_data)
-                json_file.close()
+            json_robot_file=robot.name+".json"
+            with open(json_robot_file,"w") as json_robot:
+                json_robot.write(json_data)
+                json_robot.close()
+            print("File "+json_robot_file+" created")
 
     except:
         print("\nCannot write robot creds.")
@@ -105,8 +106,8 @@ def logCreds(mailarg=""):
 def initRobot():
     json_filename=arguments["<robotname>"]+".json"
     try:
-        with open(json_filename,"r") as json_file:
-        	creds=json.load(json_file)
+        with open(json_filename,"r") as json_robot:
+        	creds=json.load(json_robot)
     except:
         print("File doesn't exist.")
         
@@ -132,8 +133,8 @@ def getCmds():
     # write available cmds to file
     try:
         json_state_file=arguments["<robotname>"]+"-robotcommands.json"
-        with open(json_state_file, "w") as json_file:
-                json.dump(cmds, json_file)
+        with open(json_state_file, "w") as json_robot_commands:
+                json.dump(cmds, json_robot_commands)
         print("File "+json_state_file+" created")
     except:
         raise
@@ -144,10 +145,10 @@ def getInfos():
    rob=initRobot()
    try:
         json_info_file=arguments["<robotname>"]+"-robotinfos.json"
-        with open(json_info_file, "w") as info_file:
-                json.dump(rob.state,info_file, indent=4)
-                json.dump(rob.get_general_info().json(),info_file, indent=4)
-                json.dump(rob.get_robot_info().json(),info_file, indent=4)
+        with open(json_info_file, "w") as json_robot_info:
+                json.dump(rob.state, json_robot_info, indent=4)
+                json.dump(rob.get_general_info().json(), json_robot_info, indent=4)
+                json.dump(rob.get_robot_info().json(), json_robot_info, indent=4)
         print("File "+json_info_file+" created")
    except:
         print("\nCannot retrieve infos.")
