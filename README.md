@@ -1,7 +1,8 @@
 # Neato Controls
 Hi everyone !
 
-Neato Control is a GUI based interface for [pybotvac](https://github.com/stianaske/pybotvac)
+Aneatocli is a command line interface for [pybotvac](https://github.com/stianaske/pybotvac).
+Neato Control was the GUI based interface I made for pybotvac but I discontinued it due to licensing issue with PyQt4.
 
 ## USAGE
 
@@ -33,5 +34,3 @@ Options:
     --gi, --get-infos            Get various infos about the current robot and write them to file '<robotname>-robotinfos.json'
     --lgsc , --log-secrets       Log the credentials into the file '<robotname>.json'.
 ```
-
-Screenshots to come for the GUI part.

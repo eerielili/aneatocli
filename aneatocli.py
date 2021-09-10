@@ -1,4 +1,21 @@
 #!/usr/bin/env python
+# aneatocli.py: a command line program for controlling Neato Robots
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+# Copyright (c) 2020-2021, Miquel Lionel <lionel@les-miquelots.net>
+
 """
 aneatocli : a Neato Robot command and state querying cli.
 
@@ -35,7 +52,7 @@ import json
 
 try:
 	from pybotvac import Robot
-	from pybotvac import Account
+	from pybotvac import Account, PasswordSession, Neato
 except:
 	print("pybotvac package is not installed.\n\nPlease run 'pip install pybotvac' from your command prompt\n")
 	raise
@@ -63,7 +80,8 @@ def logTest():
                 validMail=False
 
         passwd=getp("Password:")
-        acc=Account(mail,passwd)
+        pass_sess=PasswordSession(mail,passwd,vendor=Neato())
+        acc=Account(pass_sess)
     except:
         print("\nCannot login. Please try again.")
         raise
@@ -85,7 +103,9 @@ def logCreds(mailarg=""):
         else:
             print("The mail provided is invalid.")
         passwd=getp("Password:")
-        acc=Account(mail,passwd)
+        
+        pass_sess=PasswordSession(mail,passwd,vendor=Neato())
+        acc=Account(pass_sess)
     except:
         print("\nCannot login. Please try again.")
         raise
@@ -165,24 +185,24 @@ def funCallFromArgs(simpleArg, verboseArg, func, *args):
 def actC(act):
     rob=initRobot()
     
-    def checkActRun(robofunc):
-    	
-	try: 
-	    if rob.state["availableCommands"][act]:
-	    	robofunc()
-	except:
-	    print("\nCannot "+act+" the robot.")
-    	
+def checkActRun(robofunc):
+    
+    try: 
+        if rob.state["availableCommands"][act]:
+            robofunc()
+    except:
+        print("\nCannot "+act+" the robot.")
+        
     if "start" in act:
-    	checkActRun(rob.start_cleaning)
+        checkActRun(rob.start_cleaning)
     elif "stop" in act:
-    	checkActRun(rob.stop_cleaning)
+        checkActRun(rob.stop_cleaning)
     elif "pause" in act:
-    	checkActRun(rob.pause_cleaning)
+        checkActRun(rob.pause_cleaning)
     elif "resume" in act:
-    	checkActRun(rob.resume_cleaning) 
+        checkActRun(rob.resume_cleaning) 
     elif "goToBase" in act:
-    	checkActRun(rob.send_to_base)
+        checkActRun(rob.send_to_base)
 
 #if __name__ == '__main__':
 arguments = docopt(__doc__, version='aneatocli 0.8')

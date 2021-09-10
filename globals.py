@@ -1,3 +1,0 @@
-currentRobot=""
-robFilename=""
-robinfoFilename=""

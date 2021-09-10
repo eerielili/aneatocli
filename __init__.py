@@ -1,5 +1,3 @@
-import globals
-import rsc_rc
 from aneatocli import *
 from docopt import docopt
 import json
